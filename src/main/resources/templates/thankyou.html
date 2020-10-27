@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:object="${pageTwoBean}">
+    <p>Thanks for signing up!  Here are the details you gave us:</p>
+    <p>First Name: <span th:text="*{firstName}">First Name</span></p>
+    <p>Last Name: <span th:text="*{lastName}">Last Name</span></p>
+    <p>Email: <span th:text="*{email}">email@domaon.com</span></p>
+</div>
+</body>
+</html>
