@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uk.org.thebergers.springmvcdemo.model.PageOneBean;
 import uk.org.thebergers.springmvcdemo.model.PageTwoBean;
 
@@ -19,12 +20,11 @@ public class PageOneController {
 	}
 
 	@PostMapping(path = "/pageone")
-	public ModelAndView submit(PageOneBean pageOneBean) {
+	public ModelAndView submit(PageOneBean pageOneBean, final RedirectAttributes redirectAttributes) {
 		ModelAndView result = new ModelAndView();
 		PageTwoBean pageTwoBean = new PageTwoBean();
 		pageTwoBean.setFirstName(pageOneBean.getFirstName());
-		result.addObject("pageTwoBean", pageTwoBean);
-		result.setViewName("pagetwo");
-		return result;
+		redirectAttributes.addFlashAttribute("pageTwoBean", pageTwoBean);
+		return new ModelAndView("redirect:/pagetwo");
 	}
 }
